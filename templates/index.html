@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Udhar Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans flex items-center justify-center h-screen">
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <h1 class="text-2xl font-semibold mb-4">Coming Soon</h1>
+        <p class="text-gray-600 mb-6">We're working hard to bring you something awesome. Stay tuned!</p>
+        <div class="flex space-x-4">
+            <div class="flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded">
+                <span id="days" class="text-lg font-semibold"></span>
+                <span class="ml-1">days</span>
+            </div>
+            <div class="flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded">
+                <span id="hours" class="text-lg font-semibold"></span>
+                <span class="ml-1">hours</span>
+            </div>
+            <div class="flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded">
+                <span id="minutes" class="text-lg font-semibold"></span>
+                <span class="ml-1">minutes</span>
+            </div>
+            <div class="flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded">
+                <span id="seconds" class="text-lg font-semibold"></span>
+                <span class="ml-1">seconds</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Set the date for the countdown (change as needed)
+        const countdownDate = new Date("2023-12-31T00:00:00").getTime();
+
+        // Update the countdown every second
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const timeRemaining = countdownDate - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the countdown is over, display a message
+            if (timeRemaining < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerHTML = "0";
+                document.getElementById("hours").innerHTML = "0";
+                document.getElementById("minutes").innerHTML = "0";
+                document.getElementById("seconds").innerHTML = "0";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
